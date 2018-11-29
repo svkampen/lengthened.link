@@ -20,15 +20,7 @@ def root():
 
 @app.route('/get')
 def new_link():
-    name = request.url.split('lengthened.link/get?', 1)[1]
-    proto = 'http'
-    res = re.split('(https?)(?::|\/|\%3A|\%2F)+', name, 1)
-    if len(res) == 1:
-        name = res[0]
-    else:
-        _, proto, name = res
-
-    to = proto + '://' + name
+    to = request.query.u
 
     chars = [ord(i) for i in to]
     chars = [baseconvert.base(i, 10, 4, string=True).rjust(4, '0') for i in chars]
